@@ -31,6 +31,10 @@ class LinkedList
     count
   end
 
+  def at(index)
+    traverse { |node, idx| return node if idx == index }
+  end
+
   private
 
   def set_tail
@@ -39,8 +43,10 @@ class LinkedList
 
   def traverse(&block)
     tmp_head = head
+    index = 0
     until tmp_head.next_node.nil?
-      block.call(tmp_head)
+      block.call(tmp_head, index)
+      index += 1
       tmp_head = tmp_head.next_node
     end
     block.call(tmp_head)
