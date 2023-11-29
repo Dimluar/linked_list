@@ -53,6 +53,13 @@ class LinkedList
     false
   end
 
+  def find(value)
+    traverse do |node, index|
+      return index if node.value == value
+    end
+    nil
+  end
+
   private
 
   def set_tail
