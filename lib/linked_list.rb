@@ -89,16 +89,21 @@ class LinkedList
     return exceeded_index(1) if index >= size
     return pop if index == size - 1
 
+    remove(index)
+  end
+
+  private
+
+  def remove(index)
     traverse do |node, idx|
       if index == idx + 1
         tmp_node = node.next_node
         node.next_node = tmp_node.next_node
+        set_tail
         return tmp_node.value
       end
     end
   end
-
-  private
 
   def empty_list
     puts "\nList is already empty."
