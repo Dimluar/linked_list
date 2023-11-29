@@ -46,6 +46,13 @@ class LinkedList
     end
   end
 
+  def contains?(value)
+    traverse do |node|
+      return true if node.value == value
+    end
+    false
+  end
+
   private
 
   def set_tail
