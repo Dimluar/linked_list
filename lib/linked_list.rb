@@ -25,6 +25,12 @@ class LinkedList
     head
   end
 
+  def size
+    count = 0
+    traverse { count += 1 }
+    count
+  end
+
   private
 
   def set_tail
@@ -37,6 +43,7 @@ class LinkedList
       block.call(tmp_head)
       tmp_head = tmp_head.next_node
     end
+    block.call(tmp_head)
     tmp_head
   end
 end
