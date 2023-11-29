@@ -11,6 +11,14 @@ class LinkedList
     @tail = nil
   end
 
+  def append(value)
+    return prepend(value) if head.nil?
+
+    tmp_tail = tail
+    @tail = Node.new(value)
+    tmp_tail.next_node = tail
+  end
+
   def prepend(value)
     @head = head.nil? ? @head = Node.new(value) : Node.new(value, head)
     set_tail
