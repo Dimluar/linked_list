@@ -26,6 +26,8 @@ class LinkedList
   end
 
   def size
+    return 0 if head.nil?
+
     count = 0
     traverse { count += 1 }
     count
@@ -66,7 +68,24 @@ class LinkedList
     string << 'nil'
   end
 
+  def insert_at(value, index)
+    return exceeded_index if index > size
+    return append(value) if index == size || size.zero?
+
+    traverse do |node, idx|
+      if index == idx + 1
+        node.next_node = Node.new(value, node.next_node)
+        return self
+      end
+    end
+  end
+
   private
+
+  def exceeded_index
+    puts "\nIndex it's out of limits: #{size} max"
+    self
+  end
 
   def set_tail
     @tail = traverse {}
