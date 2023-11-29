@@ -35,6 +35,17 @@ class LinkedList
     traverse { |node, idx| return node if idx == index }
   end
 
+  def pop
+    traverse do |node|
+      if node.next_node == tail
+        tmp_tail = tail
+        node.next_node = nil
+        @tail = node
+        return tmp_tail
+      end
+    end
+  end
+
   private
 
   def set_tail
