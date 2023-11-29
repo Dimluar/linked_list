@@ -37,7 +37,7 @@ class LinkedList
   def at(index)
     return nil if size.zero? || index >= size
 
-    traverse { |node, idx| return node if idx == index }
+    traverse { |node, idx| return node.value if idx == index }
     nil
   end
 
@@ -47,7 +47,7 @@ class LinkedList
         tmp_tail = tail
         node.next_node = nil
         @tail = node
-        return tmp_tail
+        return tmp_tail.value
       end
     end
   end
