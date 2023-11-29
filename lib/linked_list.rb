@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'node'
+require_relative 'print'
 
 # Linked list data structure
 class LinkedList
+  include Print
+
   attr_reader :head, :tail
 
   def initialize
@@ -103,18 +106,6 @@ class LinkedList
         return tmp_node.value
       end
     end
-  end
-
-  def empty_list
-    puts "\nList is already empty."
-    nil
-  end
-
-  def exceeded_index(offset = 0)
-    puts "\nIndex it's out of limits: #{size - offset} max."
-    return nil if offset == 1
-
-    self
   end
 
   def set_tail
