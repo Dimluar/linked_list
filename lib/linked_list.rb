@@ -80,10 +80,31 @@ class LinkedList
     end
   end
 
+  def remove_at(index)
+    return empty_list if size.zero?
+    return exceeded_index(1) if index >= size
+    return pop if index == size - 1
+
+    traverse do |node, idx|
+      if index == idx + 1
+        tmp_node = node.next_node
+        node.next_node = tmp_node.next_node
+        return tmp_node.value
+      end
+    end
+  end
+
   private
 
-  def exceeded_index
-    puts "\nIndex it's out of limits: #{size} max"
+  def empty_list
+    puts "\nList is already empty."
+    nil
+  end
+
+  def exceeded_index(offset = 0)
+    puts "\nIndex it's out of limits: #{size - offset} max."
+    return nil if offset == 1
+
     self
   end
 
