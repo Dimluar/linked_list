@@ -60,6 +60,12 @@ class LinkedList
     nil
   end
 
+  def to_s
+    string = ''
+    traverse { |node| string += "( #{node.value} ) -> " }
+    string << 'nil'
+  end
+
   private
 
   def set_tail
