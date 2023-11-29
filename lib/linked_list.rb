@@ -22,6 +22,7 @@ class LinkedList
   def prepend(value)
     @head = head.nil? ? @head = Node.new(value) : Node.new(value, head)
     set_tail
+    head
   end
 
   private
