@@ -28,8 +28,15 @@ class LinkedList
   private
 
   def set_tail
+    @tail = traverse {}
+  end
+
+  def traverse(&block)
     tmp_head = head
-    tmp_head = tmp_head.next_node until tmp_head.next_node.nil?
-    @tail = tmp_head
+    until tmp_head.next_node.nil?
+      block.call(tmp_head)
+      tmp_head = tmp_head.next_node
+    end
+    tmp_head
   end
 end
