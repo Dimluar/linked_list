@@ -40,22 +40,26 @@ class LinkedList
   def at(index)
     return nil if size.zero? || index >= size
 
-    traverse { |node, idx| return node.value if idx == index }
+    traverse { |node, idx| return node if idx == index }
     nil
   end
 
   def pop
+    return empty_list if size.zero?
+
     traverse do |node|
       if node.next_node == tail
         tmp_tail = tail
         node.next_node = nil
         @tail = node
-        return tmp_tail.value
+        return tmp_tail
       end
     end
   end
 
   def contains?(value)
+    return false if size.zero?
+
     traverse do |node|
       return true if node.value == value
     end
@@ -63,6 +67,8 @@ class LinkedList
   end
 
   def find(value)
+    return nil if size.zero?
+
     traverse do |node, index|
       return index if node.value == value
     end
@@ -103,7 +109,7 @@ class LinkedList
         tmp_node = node.next_node
         node.next_node = tmp_node.next_node
         set_tail
-        return tmp_node.value
+        return tmp_node
       end
     end
   end
