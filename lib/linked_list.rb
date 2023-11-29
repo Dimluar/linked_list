@@ -68,8 +68,8 @@ class LinkedList
 
   def to_s
     string = ''
-    traverse { |node| string += "( #{node.value} ) -> " }
-    string << 'nil'
+    traverse { |node| string += "( #{node.value} ) -> " } if size.positive?
+    string += 'nil'
   end
 
   def insert_at(value, index)
