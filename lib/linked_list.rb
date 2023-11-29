@@ -35,7 +35,10 @@ class LinkedList
   end
 
   def at(index)
+    return nil if size.zero? || index >= size
+
     traverse { |node, idx| return node if idx == index }
+    nil
   end
 
   def pop
